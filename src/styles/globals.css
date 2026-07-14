@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background: theme("colors.background");
+  }
+
+  body {
+    min-width: 320px;
+    margin: 0;
+    overflow-x: hidden;
+    color: theme("colors.on-background");
+    background:
+      radial-gradient(circle at 50% 28%, rgb(0 219 231 / 0.08), transparent 28rem),
+      linear-gradient(180deg, theme("colors.surface-container-lowest"), theme("colors.background") 42%);
+    font-family: theme("fontFamily.body-base");
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .glass-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: theme("borderRadius.xl");
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.045), rgb(255 255 255 / 0.018));
+    box-shadow: theme("boxShadow.glass");
+    backdrop-filter: blur(20px);
+  }
+
+  .glass-card::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 2px;
+    content: "";
+    background: linear-gradient(90deg, transparent, rgb(0 219 231 / 0.52), transparent);
+    opacity: 0.7;
+  }
+
+  .chart-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+@layer utilities {
+  .glow-text-primary {
+    text-shadow: 0 0 10px rgba(0, 219, 231, 0.4);
+  }
+  
+  /* 自定义滚动条样式 */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(116, 245, 255, 0.2);
+    border-radius: 10px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(116, 245, 255, 0.4);
+  }
+}

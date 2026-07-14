@@ -1,0 +1,24 @@
+{
+  "projectId": "local-stitch-export-liaoning-industrial-intelligence",
+  "title": "Liaoning Industrial Intelligence",
+  "deviceType": "desktop",
+  "Last Sync Time": "2026-07-09T01:57:16Z",
+  "syncMode": "local-export-fallback",
+  "note": "Stitch MCP tools were unavailable in this Codex session; local files in /stitch_ were mirrored into this project.",
+  "screens": {
+    "province": {
+      "id": "1280_1",
+      "label": "辽宁省综合材料站数据大屏平台",
+      "sourceScreen": "stitch_/1280_1",
+      "dimensions": { "width": 1280, "height": 1214 },
+      "canvasPosition": { "x": 0, "y": 0 }
+    },
+    "shenyang": {
+      "id": "1280_2",
+      "label": "沈阳市综合材料站数据大屏平台",
+      "sourceScreen": "stitch_/1280_2",
+      "dimensions": { "width": 1280, "height": 1194 },
+      "canvasPosition": { "x": 1320, "y": 0 }
+    }
+  }
+}
