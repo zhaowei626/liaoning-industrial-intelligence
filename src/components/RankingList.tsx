@@ -34,7 +34,7 @@ export function RankingList({ panel, className }: RankingListProps) {
             <div className="min-w-0 flex-1 truncate pr-3 flex items-baseline gap-2">
               <span className="truncate text-on-background dark:text-on-background">{item.name}</span>
               {(item.city || item.department || item.station) && (
-                <span className="flex shrink-0 gap-1 text-[10px] text-on-surface-variant/50 dark:text-on-surface-variant/50">
+                <span className="flex shrink-0 gap-1 text-on-background dark:text-on-background opacity-80">
                   {item.city && <span>{item.city}</span>}
                   {item.department && <span>· {item.department}</span>}
                   {item.station && <span>· {item.station}</span>}
