@@ -40,7 +40,7 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
         </section>
 
         <section className="col-span-12 grid grid-cols-12 gap-gutter">
-          <aside className={`col-span-12 flex flex-col gap-gutter lg:col-span-3 ${dashboard.id === "shenyang" ? "" : "lg:row-span-2"}`}>
+          <aside className="col-span-12 flex flex-col gap-gutter lg:col-span-3">
             {dashboard.id === "shenyang" && (
               <ProgressList title={dashboard.riskPanel.title} icon={dashboard.riskPanel.icon} items={dashboard.riskPanel.items} riskMode />
             )}
