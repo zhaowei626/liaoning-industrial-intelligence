@@ -32,7 +32,7 @@ export function ScreenSwitcher(_props: ScreenSwitcherProps) {
   }, []);
 
   const isShenyang = location.pathname === "/shenyang";
-  const pageTitle = isShenyang ? "沈阳市综合材料站整体情况" : "辽宁省综合材料站整体情况";
+  const pageTitle = isShenyang ? "国网沈阳供电公司" : "国网辽宁省电力有限公司";
 
   return (
     <div className="flex w-full items-center justify-between">
