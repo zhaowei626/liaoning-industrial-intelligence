@@ -270,7 +270,7 @@ export const dashboards: Record<DashboardId, DashboardData> = {
       })),
     },
     materialRankingPanel: {
-      title: "Top 5 物资 库存金额",
+      title: "Top 10 物资 库存金额",
       icon: Boxes,
       items: [
         { name: "变压器 (220kV)", value: "1.24 亿元", city: "沈阳市", station: "沈阳铁西中心库" },
@@ -278,6 +278,11 @@ export const dashboards: Record<DashboardId, DashboardData> = {
         { name: "断路器 (110kV)", value: "0.72 亿元", city: "鞍山市", station: "鞍山钢铁备件库" },
         { name: "互感器 (35kV)", value: "0.58 亿元", city: "抚顺市", station: "抚顺石油专用库" },
         { name: "绝缘子 (复合)", value: "0.42 亿元", city: "本溪市", station: "本溪钢铁一号库" },
+        { name: "电力电缆", value: "0.38 亿元", city: "沈阳市", station: "沈阳浑南智慧库" },
+        { name: "组合电器", value: "0.32 亿元", city: "大连市", station: "大连瓦房店中心库" },
+        { name: "电能表", value: "0.25 亿元", city: "鞍山市", station: "鞍山中心库房" },
+        { name: "避雷器", value: "0.18 亿元", city: "抚顺市", station: "抚顺物资仓库" },
+        { name: "熔断器", value: "0.12 亿元", city: "本溪市", station: "本溪生产库" },
       ],
     },
     inventoryRankingPanel: {

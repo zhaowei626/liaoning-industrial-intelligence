@@ -85,6 +85,9 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
           {/*非沈阳大屏：原有布局*/}
           {dashboard.id !== "shenyang" && (
             <>
+              <div className="col-span-12 lg:col-span-3">
+                <RankingList panel={dashboard.materialRankingPanel} className="h-[400px]" />
+              </div>
               <div className="col-span-12 lg:col-span-6">
                 {dashboard.cityInventoryPanel ? (
                   <CityInventoryPanel panel={dashboard.cityInventoryPanel} className="h-[400px]" />
