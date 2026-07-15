@@ -46,7 +46,7 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
             )}
             <WarehouseDonutChart title={dashboard.warehousePanel.title} icon={dashboard.warehousePanel.icon} items={dashboard.warehousePanel.items} className="h-[300px]" />
             {dashboard.id !== "shenyang" && (
-              <ProgressList title={dashboard.departmentPanel.title} icon={dashboard.departmentPanel.icon} items={dashboard.departmentPanel.items} className="h-[700px]" />
+              <ProgressList title={dashboard.departmentPanel.title} icon={dashboard.departmentPanel.icon} items={dashboard.departmentPanel.items} className="h-[300px]" />
             )}
           </aside>
 
