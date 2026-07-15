@@ -15,8 +15,8 @@ export function LiaoningMap({ title, data, className = "" }: LiaoningMapProps) {
   const [mapRegistered, setMapRegistered] = useState(false);
 
   useEffect(() => {
-    // 辽宁省 GeoJSON 数据地址 (阿里云 DataV 提供)
-    const LIAONING_GEOJSON_URL = "https://geo.datav.aliyun.com/areas_v3/bound/210000_full.json";
+    // 改为从本地静态目录加载 GeoJSON，避免跨域或 403 错误
+    const LIAONING_GEOJSON_URL = "/liaoning_geo.json";
 
     fetch(LIAONING_GEOJSON_URL)
       .then((res) => res.json())
