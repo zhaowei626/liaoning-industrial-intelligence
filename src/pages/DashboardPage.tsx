@@ -86,7 +86,7 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
           {dashboard.id !== "shenyang" && (
             <>
               <div className="col-span-12 lg:col-span-3">
-                <RankingList panel={dashboard.materialRankingPanel} className="h-[400px]" />
+                <RankingList panel={dashboard.inventoryRankingPanel} className="h-[400px]" />
               </div>
               <div className="col-span-12 lg:col-span-6">
                 {dashboard.cityInventoryPanel ? (
@@ -94,7 +94,7 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
                 ) : null}
               </div>
               <div className="col-span-12 lg:col-span-3">
-                <RankingList panel={dashboard.inventoryRankingPanel} className="h-[400px]" />
+                <RankingList panel={dashboard.materialRankingPanel} className="h-[400px]" />
               </div>
             </>
           )}
