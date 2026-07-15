@@ -32,10 +32,10 @@ export function RankingList({ panel, className, stackedInfo = false }: RankingLi
             <span className={`${index === 0 ? "bg-secondary-container/30 text-secondary-fixed dark:bg-secondary-container/30 dark:text-secondary-fixed" : "bg-surface-bright text-on-surface-variant dark:bg-surface-bright dark:text-on-surface-variant"} mr-3 flex h-7 w-7 shrink-0 items-center justify-center rounded font-data-md text-xs ${stackedInfo ? "mt-0.5" : ""}`}>
               {index + 1}
             </span>
-            <div className={`min-w-0 flex-1 pr-3 flex ${stackedInfo ? "flex-col gap-0.5" : "items-baseline gap-2 truncate"}`}>
-              <span className="truncate text-on-background dark:text-on-background">{item.name}</span>
+            <div className={`min-w-0 flex-1 pr-3 flex ${stackedInfo ? "flex-col gap-0.5" : "items-center justify-between"}`}>
+              <span className={`truncate text-on-background dark:text-on-background ${stackedInfo ? "" : "max-w-[40%]"}`}>{item.name}</span>
               {(item.city || item.department || item.station) && (
-                <span className={`flex shrink-0 gap-1 text-on-background dark:text-on-background opacity-80 ${stackedInfo ? "text-[10px]" : ""}`}>
+                <span className={`flex shrink-0 gap-1 text-on-background dark:text-on-background opacity-80 ${stackedInfo ? "text-[10px]" : "flex-1 justify-end text-right mr-4 text-[11px]"}`}>
                   {item.city && <span>{item.city}</span>}
                   {item.department && <span>· {item.department}</span>}
                   {item.station && <span>· {item.station}</span>}
