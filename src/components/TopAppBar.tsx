@@ -43,20 +43,6 @@ export function TopAppBar({ title }: TopAppBarProps) {
         </Link>
 
         <div className="flex items-center gap-6">
-          {updateTime && (
-            <div className="flex items-center gap-2 rounded-lg border border-primary-fixed/20 bg-primary-container/5 px-3 py-1.5 shadow-sm">
-              <RefreshCw className="h-3.5 w-3.5 animate-[spin_4s_linear_infinite] text-primary-fixed-dim/60" />
-              <div className="flex flex-col items-end">
-                <span className="text-[10px] font-label-caps uppercase tracking-wider text-on-surface-variant/40 leading-none mb-0.5">
-                  数据更新时间
-                </span>
-                <span className="font-data-md text-xs text-primary-fixed-dim/80 leading-none">
-                  {updateTime}
-                </span>
-              </div>
-            </div>
-          )}
-
           <div className="flex items-center gap-2 text-on-surface-variant dark:text-on-surface-variant">
             {navActions.map((action) => {
               const Icon = action.icon === navActions[2].icon ? Bell : action.icon;

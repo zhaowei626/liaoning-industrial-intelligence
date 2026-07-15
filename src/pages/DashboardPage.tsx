@@ -25,7 +25,7 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
       <TopAppBar title={dashboard.title} />
 
       <main className="mx-auto grid min-w-[1280px] w-full grid-cols-12 gap-gutter px-grid-margin pb-grid-margin pt-[88px]">
-        <section className="col-span-12 flex flex-wrap items-center justify-end gap-3">
+        <section className="col-span-12">
           <ScreenSwitcher />
         </section>
 
@@ -34,16 +34,8 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
             <div 
               key={metric.label} 
               className="min-w-0" 
-              style={{ flex: index === 0 ? '25 25 0%' : '15 15 0%' }}
+              style={{ flex: index === 0 ? '24 24 0%' : '19 19 0%' }}
             >
-              <MetricCard metric={metric} />
-            </div>
-          ))}
-        </section>
-
-        <section className="col-span-12 grid grid-cols-4 gap-gutter">
-          {dashboard.secondaryMetrics.map((metric) => (
-            <div key={metric.label} className="col-span-1">
               <MetricCard metric={metric} />
             </div>
           ))}
@@ -51,10 +43,10 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
 
         <section className="col-span-12 grid grid-cols-12 gap-gutter">
           <aside className={`col-span-12 flex flex-col gap-gutter lg:col-span-3 ${dashboard.id === "shenyang" ? "" : "lg:row-span-2"}`}>
-            <WarehouseDonutChart title={dashboard.warehousePanel.title} icon={dashboard.warehousePanel.icon} items={dashboard.warehousePanel.items} className="h-[300px]" />
             {dashboard.id === "shenyang" && (
               <ProgressList title={dashboard.riskPanel.title} icon={dashboard.riskPanel.icon} items={dashboard.riskPanel.items} riskMode />
             )}
+            <WarehouseDonutChart title={dashboard.warehousePanel.title} icon={dashboard.warehousePanel.icon} items={dashboard.warehousePanel.items} className="h-[300px]" />
             {dashboard.id !== "shenyang" && (
               <ProgressList title={dashboard.departmentPanel.title} icon={dashboard.departmentPanel.icon} items={dashboard.departmentPanel.items} className="h-[700px]" />
             )}
@@ -73,32 +65,20 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
             )}
           </section>
 
-          <aside className="col-span-12 flex flex-col gap-gutter lg:col-span-3">
+          <section className={`${dashboard.id === "shenyang" ? "col-span-12 lg:col-span-6" : "col-span-12 lg:col-span-3"}`}>
             {dashboard.id !== "shenyang" && (
               <ProgressList title={dashboard.riskPanel.title} icon={dashboard.riskPanel.icon} items={dashboard.riskPanel.items} riskMode />
             )}
             <LineTrendChart panel={dashboard.trendPanel} className={dashboard.id === "shenyang" ? "h-[520px]" : "h-[390px]"} />
-          </aside>
-
-          {dashboard.id === "shenyang" && (
-            <div className="col-span-12 lg:col-span-3">
-              <ReturnTrendChart panel={dashboard.returnTrendPanel} className="h-[520px]" />
-            </div>
-          )}
+          </section>
 
           {/*沈阳大屏：Top5 放在第 4 行*/}
           {dashboard.id === "shenyang" && (
             <>
-              <div className="col-span-12 lg:col-span-3">
-                <RankingList panel={dashboard.inboundRankingPanel} className="h-[400px]" />
-              </div>
-              <div className="col-span-12 lg:col-span-3">
-                <RankingList panel={dashboard.outboundRankingPanel} className="h-[400px]" />
-              </div>
-              <div className="col-span-12 lg:col-span-3">
+              <div className="col-span-12 lg:col-span-6">
                 <RankingList panel={dashboard.inventoryRankingPanel} className="h-[400px]" />
               </div>
-              <div className="col-span-12 lg:col-span-3">
+              <div className="col-span-12 lg:col-span-6">
                 <RankingList panel={dashboard.materialRankingPanel} className="h-[400px]" />
               </div>
             </>
@@ -113,19 +93,7 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
                 ) : null}
               </div>
               <div className="col-span-12 lg:col-span-3">
-                <ReturnTrendChart panel={dashboard.returnTrendPanel} className="h-[400px]" />
-              </div>
-              <div className="col-span-12 lg:col-span-3">
-                <RankingList panel={dashboard.inboundRankingPanel} className="h-[400px]" />
-              </div>
-              <div className="col-span-12 lg:col-span-3">
-                <RankingList panel={dashboard.outboundRankingPanel} className="h-[400px]" />
-              </div>
-              <div className="col-span-12 lg:col-span-3">
                 <RankingList panel={dashboard.inventoryRankingPanel} className="h-[400px]" />
-              </div>
-              <div className="col-span-12 lg:col-span-3">
-                <RankingList panel={dashboard.materialRankingPanel} className="h-[400px]" />
               </div>
             </>
           )}

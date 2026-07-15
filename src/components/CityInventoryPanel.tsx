@@ -1,4 +1,5 @@
-import { MapPin, Info } from "lucide-react";
+import React, { useState } from "react";
+import { MapPin, Info, ArrowUpRight } from "lucide-react";
 import type { CityInventoryPanelData } from "../data/mockData";
 import { GlassCard } from "./GlassCard";
 import { EChartsBase } from "./EChartsBase";
@@ -10,7 +11,12 @@ export interface CityInventoryPanelProps {
 }
 
 export function CityInventoryPanel({ panel, className }: CityInventoryPanelProps) {
-  const items = panel.items;
+  const [activeTab, setActiveTab] = useState<"city" | "unit">("city");
+
+  const cities = panel.items.filter(item => !item.name.endsWith("公司"));
+  const units = panel.items.filter(item => item.name.endsWith("公司"));
+  
+  const currentItems = activeTab === "city" ? cities : units;
   
   const option: EChartsOption = {
     tooltip: {
@@ -43,11 +49,11 @@ export function CityInventoryPanel({ panel, className }: CityInventoryPanelProps
     },
     xAxis: {
       type: "category",
-      data: items.map((item) => item.name),
+      data: currentItems.map((item) => item.name),
       axisLabel: {
         color: "rgba(226, 232, 240, 0.6)",
         fontSize: 10,
-        rotate: 35,
+        rotate: activeTab === "city" ? 35 : 0,
       },
       axisLine: {
         lineStyle: {
@@ -101,8 +107,8 @@ export function CityInventoryPanel({ panel, className }: CityInventoryPanelProps
       {
         name: "库存金额",
         type: "bar",
-        data: items.map((item) => parseFloat(item.value)),
-        barWidth: "40%",
+        data: currentItems.map((item) => parseFloat(item.value)),
+        barWidth: activeTab === "city" ? "40%" : "30%",
         itemStyle: {
           color: {
             type: "linear",
@@ -122,7 +128,7 @@ export function CityInventoryPanel({ panel, className }: CityInventoryPanelProps
         name: "站点数量",
         type: "line",
         yAxisIndex: 1,
-        data: items.map((item) => item.stationCount),
+        data: currentItems.map((item) => item.stationCount),
         smooth: true,
         symbol: "circle",
         symbolSize: 6,
@@ -146,8 +152,38 @@ export function CityInventoryPanel({ panel, className }: CityInventoryPanelProps
           <h2 className="font-headline-md text-xl font-bold text-on-background dark:text-on-background">
             {panel.title}
           </h2>
-          <Info className="h-4 w-4 cursor-help text-on-surface-variant/40 transition-colors hover:text-on-surface-variant" />
+          <div className="flex items-center gap-1">
+            <Info className="h-4 w-4 cursor-help text-on-surface-variant/40 transition-colors hover:text-on-surface-variant" />
+            <div className="w-[1px] h-3 bg-white/10 mx-0.5" />
+            <ArrowUpRight className="h-4 w-4 cursor-pointer text-primary-fixed-dim/60 transition-colors hover:text-primary-fixed-dim" />
+          </div>
         </div>
+
+        {/* Tab Switcher - Only show if there are business units */}
+        {units.length > 0 && (
+          <div className="flex items-center rounded-lg bg-surface-container-highest/30 p-1 border border-white/5">
+            <button
+              onClick={() => setActiveTab("city")}
+              className={`px-3 py-1 text-[11px] font-bold tracking-wider rounded-md transition-all ${
+                activeTab === "city"
+                  ? "bg-primary-fixed-dim text-on-primary shadow-lg"
+                  : "text-on-surface-variant hover:text-on-background"
+              }`}
+            >
+              各地市
+            </button>
+            <button
+              onClick={() => setActiveTab("unit")}
+              className={`px-3 py-1 text-[11px] font-bold tracking-wider rounded-md transition-all ${
+                activeTab === "unit"
+                  ? "bg-primary-fixed-dim text-on-primary shadow-lg"
+                  : "text-on-surface-variant hover:text-on-background"
+              }`}
+            >
+              各业务单位
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="flex-1">

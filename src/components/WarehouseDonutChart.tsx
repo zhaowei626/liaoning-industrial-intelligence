@@ -1,4 +1,4 @@
-import { Info, type LucideIcon } from "lucide-react";
+import { Info, ArrowUpRight, type LucideIcon } from "lucide-react";
 import * as echarts from "echarts";
 import type { ProgressItem } from "../data/mockData";
 import { GlassCard } from "./GlassCard";
@@ -102,7 +102,11 @@ export function WarehouseDonutChart({ title, icon: Icon, items, className = "" }
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-1.5">
           <h2 className="font-headline-md text-lg font-semibold text-on-background dark:text-on-background">{title}</h2>
-          <Info className="h-4 w-4 cursor-help text-on-surface-variant/40 transition-colors hover:text-on-surface-variant" />
+          <div className="flex items-center gap-1">
+            <Info className="h-4 w-4 cursor-help text-on-surface-variant/40 transition-colors hover:text-on-surface-variant" />
+            <div className="w-[1px] h-3 bg-white/10 mx-0.5" />
+            <ArrowUpRight className="h-4 w-4 cursor-pointer text-primary-fixed-dim/60 transition-colors hover:text-primary-fixed-dim" />
+          </div>
         </div>
         <Icon className="h-5 w-5 text-on-surface-variant dark:text-on-surface-variant" />
       </div>

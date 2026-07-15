@@ -1,4 +1,4 @@
-import { Info } from "lucide-react";
+import { Info, ArrowUpRight } from "lucide-react";
 import * as echarts from "echarts";
 import { shellIcons, type DashboardData } from "../data/mockData";
 import { GlassCard } from "./GlassCard";
@@ -127,7 +127,11 @@ export function ReturnTrendChart({ panel, className = "" }: ReturnTrendChartProp
           <h2 className="font-headline-md text-xl font-bold text-on-background dark:text-on-background">
             {panel.title}
           </h2>
-          <Info className="h-4 w-4 cursor-help text-on-surface-variant/40 transition-colors hover:text-on-surface-variant" />
+          <div className="flex items-center gap-1">
+            <Info className="h-4 w-4 cursor-help text-on-surface-variant/40 transition-colors hover:text-on-surface-variant" />
+            <div className="w-[1px] h-3 bg-white/10 mx-0.5" />
+            <ArrowUpRight className="h-4 w-4 cursor-pointer text-primary-fixed-dim/60 transition-colors hover:text-primary-fixed-dim" />
+          </div>
         </div>
       </div>
 

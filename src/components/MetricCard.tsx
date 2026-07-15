@@ -1,5 +1,5 @@
 import React from "react";
-import { Info } from "lucide-react";
+import { Info, ArrowUpRight } from "lucide-react";
 import { shellIcons, type MetricItem } from "../data/mockData";
 import { GlassCard } from "./GlassCard";
 
@@ -38,7 +38,11 @@ export function MetricCard({ metric }: MetricCardProps) {
           <h2 className={`font-label-caps text-label-caps uppercase tracking-widest ${metric.status === "risk" ? textTone : "text-on-surface-variant dark:text-on-surface-variant"}`}>
             {metric.label}
           </h2>
-          <Info className={`h-3.5 w-3.5 cursor-help transition-colors ${metric.status === "risk" ? "text-error/40 hover:text-error" : "text-on-surface-variant/40 hover:text-on-surface-variant"}`} />
+          <div className="flex items-center gap-1">
+            <Info className={`h-3.5 w-3.5 cursor-help transition-colors ${metric.status === "risk" ? "text-error/40 hover:text-error" : "text-on-surface-variant/40 hover:text-on-surface-variant"}`} />
+            <div className="w-[1px] h-3 bg-white/10 mx-0.5" />
+            <ArrowUpRight className={`h-3.5 w-3.5 cursor-pointer transition-colors ${metric.status === "risk" ? "text-error/40 hover:text-error" : "text-primary-fixed-dim/60 hover:text-primary-fixed-dim"}`} />
+          </div>
         </div>
 
         {subMetrics ? (

@@ -68,12 +68,12 @@ const config: Config = {
         "stack-md": "16px",
       },
       fontFamily: {
-        "data-md": ["JetBrains Mono", "monospace"],
-        "data-lg": ["JetBrains Mono", "monospace"],
-        "headline-md": ["Inter", "sans-serif"],
-        "body-base": ["Inter", "sans-serif"],
-        "display-lg": ["Inter", "sans-serif"],
-        "label-caps": ["Inter", "sans-serif"],
+        "data-md": ["monospace"],
+        "data-lg": ["monospace"],
+        "headline-md": ["sans-serif"],
+        "body-base": ["sans-serif"],
+        "display-lg": ["sans-serif"],
+        "label-caps": ["sans-serif"],
       },
       fontSize: {
         "data-md": ["18px", { lineHeight: "24px", fontWeight: "500" }],

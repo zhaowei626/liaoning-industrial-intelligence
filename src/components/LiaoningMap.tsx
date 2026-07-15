@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as echarts from "echarts";
-import { Info } from "lucide-react";
+import { Info, ArrowUpRight } from "lucide-react";
 import { EChartsBase } from "./EChartsBase";
 import { GlassCard } from "./GlassCard";
 import type { CityInventoryItem } from "../data/mockData";
@@ -19,12 +19,18 @@ export function LiaoningMap({ title, data, className = "" }: LiaoningMapProps) {
     const LIAONING_GEOJSON_URL = "/liaoning_geo.json";
 
     fetch(LIAONING_GEOJSON_URL)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.json();
+      })
       .then((geoJson) => {
         echarts.registerMap("liaoning", geoJson);
         setMapRegistered(true);
       })
-      .catch((err) => console.error("Failed to load Liaoning GeoJSON:", err));
+      .catch((err) => {
+        console.error("Failed to load Liaoning GeoJSON:", err);
+        // 如果本地加载失败，尝试从备份地址加载（可选）
+      });
   }, []);
 
   if (!mapRegistered) {
@@ -123,7 +129,11 @@ export function LiaoningMap({ title, data, className = "" }: LiaoningMapProps) {
         <h2 className="font-headline-md text-xl font-bold text-on-background dark:text-on-background">
           {title}
         </h2>
-        <Info className="h-4 w-4 cursor-help text-on-surface-variant/40 transition-colors hover:text-on-surface-variant" />
+        <div className="flex items-center gap-1">
+          <Info className="h-4 w-4 cursor-help text-on-surface-variant/40 transition-colors hover:text-on-surface-variant" />
+          <div className="w-[1px] h-3 bg-white/10 mx-0.5" />
+          <ArrowUpRight className="h-4 w-4 cursor-pointer text-primary-fixed-dim/60 transition-colors hover:text-primary-fixed-dim" />
+        </div>
       </div>
       
       <div className="flex-1">

@@ -121,7 +121,6 @@ export interface DashboardData {
     readonly items: readonly ProgressItem[];
   };
   readonly map: MapPanelData;
-  readonly secondaryMetrics: readonly MetricItem[];
   readonly riskPanel: {
     readonly title: string;
     readonly icon: LucideIcon;
@@ -141,24 +140,7 @@ export interface DashboardData {
     readonly highlightValue2?: string;
     readonly points: readonly TrendPoint[];
   };
-  readonly returnTrendPanel: {
-    readonly title: string;
-    readonly unitLabel: string;
-    readonly highlightLabel: string;
-    readonly highlightValue: string;
-    readonly points: readonly TrendPoint[];
-  };
   readonly materialRankingPanel: {
-    readonly title: string;
-    readonly icon: LucideIcon;
-    readonly items: readonly RankingItem[];
-  };
-  readonly inboundRankingPanel: {
-    readonly title: string;
-    readonly icon: LucideIcon;
-    readonly items: readonly RankingItem[];
-  };
-  readonly outboundRankingPanel: {
     readonly title: string;
     readonly icon: LucideIcon;
     readonly items: readonly RankingItem[];
@@ -206,13 +188,6 @@ export const dashboards: Record<DashboardId, DashboardData> = {
       { label: "材料站本月出库金额", value: "¥ 10.82", unit: "亿元", icon: ArrowUpCircle, status: "normal" },
       { label: "材料站库存金额", value: "¥ 84.50", unit: "亿元", trend: "+5.20% 较上月", icon: WalletCards, status: "normal" },
       { label: "材料站物资数量", value: "3,492", unit: "万条", trend: "平稳", icon: Boxes, status: "normal" },
-      { label: "材料站本月退利库金额", value: "¥ 1.25", unit: "亿元", icon: ArrowDownCircle, status: "normal" },
-    ],
-    secondaryMetrics: [
-      { label: "工程待用物资数量", value: "1,245", unit: "条", icon: PackageCheck, status: "normal" },
-      { label: "工程结余物资数量", value: "856", unit: "条", icon: Boxes, status: "normal" },
-      { label: "工程结余物资金额", value: "¥ 4.25", unit: "亿元", icon: WalletCards, status: "normal" },
-      { label: "存储超一年物资金额", value: "¥ 2.18", unit: "亿元", icon: AlertTriangle, status: "risk" },
     ],
     stationStatus: {
       title: "材料站状态",
@@ -227,7 +202,7 @@ export const dashboards: Record<DashboardId, DashboardData> = {
       ],
     },
     departmentPanel: {
-      title: "材料站按归属部门分布",
+      title: "各地市材料站按归属部门分布",
       icon: GitBranch,
       items: [
         { label: "设备管理部", value: 385, amount: "28.40 亿元", percent: 80, tone: "primary" },
@@ -244,13 +219,7 @@ export const dashboards: Record<DashboardId, DashboardData> = {
         { label: "法律合规部", value: 35, amount: "1.20 亿元", percent: 8, tone: "muted" },
         { label: "党建工作部", value: 28, amount: "0.95 亿元", percent: 6, tone: "muted" },
         { label: "纪委办公室", value: 22, amount: "0.75 亿元", percent: 5, tone: "muted" },
-        { label: "工会", value: 18, amount: "0.60 亿元", percent: 4, tone: "muted" },
-        { label: "团委", value: 12, amount: "0.40 亿元", percent: 3, tone: "muted" },
         { label: "办公室", value: 10, amount: "0.35 亿元", percent: 2, tone: "muted" },
-        { label: "培训中心", value: 8, amount: "0.25 亿元", percent: 2, tone: "muted" },
-        { label: "科研院", value: 6, amount: "0.20 亿元", percent: 1, tone: "muted" },
-        { label: "经研院", value: 5, amount: "0.15 亿元", percent: 1, tone: "muted" },
-        { label: "其他", value: 43, amount: "1.25 亿元", percent: 10, tone: "muted" },
       ],
     },
     map: {
@@ -300,16 +269,6 @@ export const dashboards: Record<DashboardId, DashboardData> = {
         value2: [1100, 1120, 1150, 1180, 1200, 1210, 1220, 1230, 1235, 1240, 1245, 1248][index]
       })),
     },
-    returnTrendPanel: {
-      title: "近一年 退利库金额变化趋势",
-      unitLabel: "亿元",
-      highlightLabel: "2024-05",
-      highlightValue: "1.25",
-      points: months.map((label, index) => ({ 
-        label, 
-        value: [0.85, 0.92, 0.88, 1.05, 1.12, 1.08, 1.15, 1.22, 1.18, 1.25, 1.32, 1.25][index]
-      })),
-    },
     materialRankingPanel: {
       title: "Top 5 物资 库存金额",
       icon: Boxes,
@@ -319,28 +278,6 @@ export const dashboards: Record<DashboardId, DashboardData> = {
         { name: "断路器 (110kV)", value: "0.72 亿元", city: "鞍山市", station: "鞍山钢铁备件库" },
         { name: "互感器 (35kV)", value: "0.58 亿元", city: "抚顺市", station: "抚顺石油专用库" },
         { name: "绝缘子 (复合)", value: "0.42 亿元", city: "本溪市", station: "本溪钢铁一号库" },
-      ],
-    },
-    inboundRankingPanel: {
-      title: "Top 5 综合材料站 本月入库金额",
-      icon: ArrowDownCircle,
-      items: [
-        { name: "沈阳浑南智慧库", value: "0.85 亿元", city: "沈阳市", department: "设备管理部" },
-        { name: "大连瓦房店中心库", value: "0.72 亿元", city: "大连市", department: "物资管理部" },
-        { name: "辽阳宏伟一号库", value: "0.58 亿元", city: "辽阳市", department: "基建部" },
-        { name: "营口鲅鱼圈库房", value: "0.42 亿元", city: "营口市", department: "物资管理部" },
-        { name: "锦州凌海储备站", value: "0.38 亿元", city: "锦州市", department: "设备管理部" },
-      ],
-    },
-    outboundRankingPanel: {
-      title: "Top 5 综合材料站 本月出库金额",
-      icon: ArrowUpCircle,
-      items: [
-        { name: "沈阳铁西中心库", value: "0.78 亿元", city: "沈阳市", department: "物资管理部" },
-        { name: "大连金普一号库", value: "0.65 亿元", city: "大连市", department: "物资管理部" },
-        { name: "鞍山钢铁备件库", value: "0.52 亿元", city: "鞍山市", department: "设备管理部" },
-        { name: "本溪钢铁一号库", value: "0.35 亿元", city: "本溪市", department: "物资管理部" },
-        { name: "抚顺石油专用库", value: "0.28 亿元", city: "抚顺市", department: "基建部" },
       ],
     },
     inventoryRankingPanel: {
@@ -395,17 +332,10 @@ export const dashboards: Record<DashboardId, DashboardData> = {
           { label: "停用", value: "25", unit: "个" },
         ],
       },
-      { label: "材料站库存金额", value: "¥ 28.5", unit: "亿元", trend: "+5.20% 较上月", icon: WalletCards, status: "normal" },
-      { label: "材料站物资数量", value: "892", unit: "万条", trend: "平稳", icon: Boxes, status: "normal" },
       { label: "材料站本月入库金额", value: "¥ 4.25", unit: "亿元", icon: ArrowDownCircle, status: "normal" },
       { label: "材料站本月出库金额", value: "¥ 3.12", unit: "亿元", icon: ArrowUpCircle, status: "normal" },
-      { label: "材料站本月退利库金额", value: "¥ 0.45", unit: "亿元", icon: ArrowDownCircle, status: "normal" },
-    ],
-    secondaryMetrics: [
-      { label: "工程待用物资数量", value: "245", unit: "条", icon: PackageCheck, status: "normal" },
-      { label: "工程结余物资数量", value: "156", unit: "条", icon: Boxes, status: "normal" },
-      { label: "工程结余物资金额", value: "¥ 0.85", unit: "亿元", icon: WalletCards, status: "normal" },
-      { label: "存储超一年物资金额", value: "¥ 0.42", unit: "亿元", icon: AlertTriangle, status: "risk" },
+      { label: "材料站库存金额", value: "¥ 28.5", unit: "亿元", trend: "+5.20% 较上月", icon: WalletCards, status: "normal" },
+      { label: "材料站物资数量", value: "892", unit: "万条", trend: "平稳", icon: Boxes, status: "normal" },
     ],
     stationStatus: {
       title: "材料站状态",
@@ -487,18 +417,8 @@ export const dashboards: Record<DashboardId, DashboardData> = {
         value2: [210, 215, 220, 225, 230, 232, 235, 238, 240, 242, 245, 248][index]
       })),
     },
-    returnTrendPanel: {
-      title: "近一年 退利库金额变化趋势",
-      unitLabel: "亿元",
-      highlightLabel: "2024-05",
-      highlightValue: "0.45",
-      points: months.map((label, index) => ({ 
-        label, 
-        value: [0.25, 0.28, 0.32, 0.35, 0.38, 0.36, 0.40, 0.42, 0.41, 0.45, 0.48, 0.45][index]
-      })),
-    },
     materialRankingPanel: {
-      title: "Top 5 物资 库存金额",
+      title: "Top 10 物资 库存金额",
       icon: Boxes,
       items: [
         { name: "配电变压器", value: "0.45 亿元", city: "沈阳市", station: "沈阳铁西中心库" },
@@ -506,28 +426,11 @@ export const dashboards: Record<DashboardId, DashboardData> = {
         { name: "组合电器", value: "0.32 亿元", city: "沈阳市", station: "沈阳大东生产库" },
         { name: "智能电表", value: "0.25 亿元", city: "沈阳市", station: "沈阳于洪物流仓" },
         { name: "充电桩模块", value: "0.18 亿元", city: "沈阳市", station: "沈阳和平储备站" },
-      ],
-    },
-    inboundRankingPanel: {
-      title: "Top 5 综合材料站 本月入库金额",
-      icon: ArrowDownCircle,
-      items: [
-        { name: "沈阳苏家屯中心库", value: "0.28 亿元", city: "沈阳市", department: "物资管理部" },
-        { name: "沈阳康平应急站", value: "0.22 亿元", city: "沈阳市", department: "设备管理部" },
-        { name: "沈阳法库备件库", value: "0.18 亿元", city: "沈阳市", department: "基建部" },
-        { name: "沈阳新民物流仓", value: "0.15 亿元", city: "沈阳市", department: "物资管理部" },
-        { name: "沈阳辽中储备站", value: "0.12 亿元", city: "沈阳市", department: "设备管理部" },
-      ],
-    },
-    outboundRankingPanel: {
-      title: "Top 5 综合材料站 本月出库金额",
-      icon: ArrowUpCircle,
-      items: [
-        { name: "沈阳铁西中心库", value: "0.32 亿元", city: "沈阳市", department: "物资管理部" },
-        { name: "沈阳浑南智慧库", value: "0.28 亿元", city: "沈阳市", department: "设备管理部" },
-        { name: "沈阳大东生产库", value: "0.22 亿元", city: "沈阳市", department: "物资管理部" },
-        { name: "沈阳于洪物流仓", value: "0.18 亿元", city: "沈阳市", department: "基建部" },
-        { name: "沈阳和平储备站", value: "0.15 亿元", city: "沈阳市", department: "后勤保障部" },
+        { name: "互感器", value: "0.15 亿元", city: "沈阳市", station: "沈阳苏家屯中心库" },
+        { name: "断路器", value: "0.12 亿元", city: "沈阳市", station: "沈阳康平应急站" },
+        { name: "避雷器", value: "0.10 亿元", city: "沈阳市", station: "沈阳法库备件库" },
+        { name: "隔离开关", value: "0.08 亿元", city: "沈阳市", station: "沈阳新民物流仓" },
+        { name: "电力电容器", value: "0.05 亿元", city: "沈阳市", station: "沈阳辽中储备站" },
       ],
     },
     inventoryRankingPanel: {
