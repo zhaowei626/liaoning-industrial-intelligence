@@ -42,11 +42,18 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
         <section className="col-span-12 grid grid-cols-12 gap-gutter">
           <aside className="col-span-12 flex flex-col gap-gutter lg:col-span-3">
             {dashboard.id === "shenyang" && (
-              <ProgressList title={dashboard.riskPanel.title} icon={dashboard.riskPanel.icon} items={dashboard.riskPanel.items} riskMode />
+              <>
+                <ProgressList title={dashboard.riskPanel.title} icon={dashboard.riskPanel.icon} items={dashboard.riskPanel.items} riskMode />
+                {dashboard.cityInventoryPanel && (
+                  <CityInventoryPanel panel={dashboard.cityInventoryPanel} className="h-[300px]" />
+                )}
+              </>
             )}
-            <WarehouseDonutChart title={dashboard.warehousePanel.title} icon={dashboard.warehousePanel.icon} items={dashboard.warehousePanel.items} className="h-[300px]" />
             {dashboard.id !== "shenyang" && (
-              <ProgressList title={dashboard.departmentPanel.title} icon={dashboard.departmentPanel.icon} items={dashboard.departmentPanel.items} className="h-[300px]" />
+              <>
+                <WarehouseDonutChart title={dashboard.warehousePanel.title} icon={dashboard.warehousePanel.icon} items={dashboard.warehousePanel.items} className="h-[300px]" />
+                <ProgressList title={dashboard.departmentPanel.title} icon={dashboard.departmentPanel.icon} items={dashboard.departmentPanel.items} className="h-[300px]" />
+              </>
             )}
           </aside>
 
@@ -58,8 +65,8 @@ export function DashboardPage({ dashboardId }: DashboardPageProps) {
                 className="h-[620px]" 
               />
             )}
-            {dashboard.id === "shenyang" && dashboard.cityInventoryPanel && (
-              <CityInventoryPanel panel={dashboard.cityInventoryPanel} className="h-[520px]" />
+            {dashboard.id === "shenyang" && (
+              <WarehouseDonutChart title={dashboard.warehousePanel.title} icon={dashboard.warehousePanel.icon} items={dashboard.warehousePanel.items} className="h-[520px]" />
             )}
           </section>
 
