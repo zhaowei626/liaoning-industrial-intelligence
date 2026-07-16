@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as echarts from "echarts";
+import { useNavigate } from "react-router-dom";
 import { Info, ArrowUpRight } from "lucide-react";
 import { EChartsBase } from "./EChartsBase";
 import { GlassCard } from "./GlassCard";
@@ -13,6 +14,7 @@ export interface LiaoningMapProps {
 
 export function LiaoningMap({ title, data, className = "" }: LiaoningMapProps) {
   const [mapRegistered, setMapRegistered] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 改为从本地静态目录加载 GeoJSON，避免跨域或 403 错误
@@ -29,9 +31,18 @@ export function LiaoningMap({ title, data, className = "" }: LiaoningMapProps) {
       })
       .catch((err) => {
         console.error("Failed to load Liaoning GeoJSON:", err);
-        // 如果本地加载失败，尝试从备份地址加载（可选）
       });
   }, []);
+
+  const handleMapClick = (params: any) => {
+    if (params.name === "沈阳市") {
+      navigate("/shenyang");
+    }
+  };
+
+  const onEvents = {
+    click: handleMapClick,
+  };
 
   if (!mapRegistered) {
     return (
@@ -137,7 +148,7 @@ export function LiaoningMap({ title, data, className = "" }: LiaoningMapProps) {
       </div>
       
       <div className="flex-1">
-        <EChartsBase option={option} />
+        <EChartsBase option={option} onEvents={onEvents} />
       </div>
     </GlassCard>
   );
