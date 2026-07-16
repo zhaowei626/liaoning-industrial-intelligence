@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Info, ArrowUpRight, HelpCircle, RefreshCw } from "lucide-react";
+import { Info, ArrowUpRight, HelpCircle, RefreshCw, ChevronLeft } from "lucide-react";
 import { dashboardRoutes, shellIcons } from "../data/mockData";
 import { useState, useEffect } from "react";
 
@@ -44,6 +44,17 @@ export function ScreenSwitcher(_props: ScreenSwitcherProps) {
       </div>
 
       <div className="flex items-center gap-6">
+        {/* 返回上级图标 - 仅在沈阳市大屏显示 */}
+        {isShenyang && (
+          <Link
+            to="/"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-surface-container/40 text-on-surface-variant transition hover:border-primary-fixed-dim/40 hover:text-primary dark:border-white/10 dark:bg-surface-container/40 dark:text-on-surface-variant dark:hover:border-primary-fixed-dim/40 dark:hover:text-primary"
+            title="返回辽宁省大屏"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Link>
+        )}
+
         {/* 数据更新时间 */}
         {updateTime && (
           <div className="flex items-center gap-2 rounded-lg border border-primary-fixed/10 bg-surface-container/30 px-3 py-1.5 shadow-sm backdrop-blur-sm">
@@ -60,27 +71,6 @@ export function ScreenSwitcher(_props: ScreenSwitcherProps) {
         )}
 
         <div className="flex items-center gap-4">
-          <nav className="flex items-center gap-2" aria-label="screen navigation">
-            {dashboardRoutes.map((route) => {
-              const active = location.pathname === route.path;
-
-              return (
-                <Link
-                  key={route.path}
-                  to={route.path}
-                  className={`flex h-9 items-center gap-2 rounded-lg border px-3 font-label-caps text-[11px] uppercase tracking-widest transition ${
-                    active
-                      ? "border-primary-fixed-dim bg-primary-container/15 text-primary-fixed-dim shadow-glow-primary dark:border-primary-fixed-dim dark:bg-primary-container/15 dark:text-primary-fixed-dim"
-                      : "border-white/10 bg-surface-container/40 text-on-surface-variant hover:border-primary-fixed-dim/40 hover:text-primary dark:border-white/10 dark:bg-surface-container/40 dark:text-on-surface-variant dark:hover:border-primary-fixed-dim/40 dark:hover:text-primary"
-                  }`}
-                >
-                  <RouteIcon className="h-3.5 w-3.5" />
-                  {route.label}
-                </Link>
-              );
-            })}
-          </nav>
-
           {/* 图标说明按钮 */}
           <div className="relative">
             <button
