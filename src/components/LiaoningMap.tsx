@@ -146,9 +146,27 @@ export function LiaoningMap({ title, data, className = "" }: LiaoningMapProps) {
           <ArrowUpRight className="h-4 w-4 cursor-pointer text-primary-fixed-dim/60 transition-colors hover:text-primary-fixed-dim" />
         </div>
       </div>
-      
+
       <div className="flex-1">
         <EChartsBase option={option} onEvents={onEvents} />
+      </div>
+
+      {/* 业务单位标签 - 显示在地图最下方一行 */}
+      <div className="flex items-center justify-center gap-3 px-container-padding pb-container-padding pt-2">
+        <span className="text-[10px] font-label-caps uppercase tracking-wider text-on-surface-variant/50">业务单位</span>
+        <div className="flex items-center gap-2">
+          {data
+            .filter((item) => ["信通公司", "物资分公司", "建设分公司", "送变电公司"].includes(item.name))
+            .map((item) => (
+              <div
+                key={item.name}
+                className="flex items-center gap-1.5 rounded-md border border-white/10 bg-surface-container/30 px-2.5 py-1 transition-colors hover:border-primary-fixed-dim/40"
+              >
+                <span className="text-[11px] font-medium text-on-background">{item.name}</span>
+                <span className="text-[10px] tabular-nums text-primary-fixed-dim/70">{item.stationCount} 站</span>
+              </div>
+            ))}
+        </div>
       </div>
     </GlassCard>
   );
