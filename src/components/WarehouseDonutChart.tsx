@@ -116,7 +116,7 @@ export function WarehouseDonutChart({ title, icon: Icon, items, className = "" }
           <EChartsBase option={option} />
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <span className="font-data-md text-xl text-primary-fixed-dim dark:text-primary-fixed-dim">{total}</span>
-            <span className="text-[10px] text-on-surface-variant dark:text-on-surface-variant">仓库总数</span>
+            <span className="text-[10px] text-on-surface-variant dark:text-on-surface-variant">材料站总数</span>
           </div>
         </div>
 

@@ -96,6 +96,9 @@ export interface CityInventoryItem {
   readonly value: string;
   readonly stationCount: number;
   readonly percent: number;
+  readonly enabledCount?: number;
+  readonly inboundAmount?: string;
+  readonly outboundAmount?: string;
 }
 
 export interface CityInventoryPanelData {
@@ -298,20 +301,20 @@ export const dashboards: Record<DashboardId, DashboardData> = {
     cityInventoryPanel: {
       title: "各地市/各业务单位 库存金额与材料站数量",
       items: [
-        { name: "沈阳", value: "28.52", stationCount: 248, percent: 85 },
-        { name: "大连", value: "32.13", stationCount: 186, percent: 95 },
-        { name: "鞍山", value: "15.23", stationCount: 142, percent: 50 },
-        { name: "抚顺", value: "12.84", stationCount: 98, percent: 42 },
-        { name: "本溪", value: "10.55", stationCount: 85, percent: 35 },
-        { name: "丹东", value: "9.83", stationCount: 112, percent: 32 },
-        { name: "锦州", value: "11.22", stationCount: 125, percent: 38 },
-        { name: "营口", value: "14.56", stationCount: 134, percent: 48 },
-        { name: "阜新", value: "8.26", stationCount: 65, percent: 28 },
-        { name: "辽阳", value: "9.54", stationCount: 88, percent: 31 },
-        { name: "盘锦", value: "13.24", stationCount: 76, percent: 44 },
-        { name: "铁岭", value: "10.18", stationCount: 118, percent: 34 },
-        { name: "朝阳", value: "11.55", stationCount: 145, percent: 38 },
-        { name: "葫芦岛", value: "9.25", stationCount: 102, percent: 30 },
+        { name: "沈阳", value: "28.52", stationCount: 248, percent: 85, enabledCount: 232, inboundAmount: "4.25", outboundAmount: "3.12" },
+        { name: "大连", value: "32.13", stationCount: 186, percent: 95, enabledCount: 178, inboundAmount: "5.18", outboundAmount: "4.42" },
+        { name: "鞍山", value: "15.23", stationCount: 142, percent: 50, enabledCount: 132, inboundAmount: "2.45", outboundAmount: "2.10" },
+        { name: "抚顺", value: "12.84", stationCount: 98, percent: 42, enabledCount: 90, inboundAmount: "1.82", outboundAmount: "1.55" },
+        { name: "本溪", value: "10.55", stationCount: 85, percent: 35, enabledCount: 78, inboundAmount: "1.45", outboundAmount: "1.22" },
+        { name: "丹东", value: "9.83", stationCount: 112, percent: 32, enabledCount: 102, inboundAmount: "1.35", outboundAmount: "1.15" },
+        { name: "锦州", value: "11.22", stationCount: 125, percent: 38, enabledCount: 116, inboundAmount: "1.62", outboundAmount: "1.38" },
+        { name: "营口", value: "14.56", stationCount: 134, percent: 48, enabledCount: 125, inboundAmount: "2.18", outboundAmount: "1.85" },
+        { name: "阜新", value: "8.26", stationCount: 65, percent: 28, enabledCount: 58, inboundAmount: "1.05", outboundAmount: "0.92" },
+        { name: "辽阳", value: "9.54", stationCount: 88, percent: 31, enabledCount: 80, inboundAmount: "1.28", outboundAmount: "1.08" },
+        { name: "盘锦", value: "13.24", stationCount: 76, percent: 44, enabledCount: 68, inboundAmount: "1.95", outboundAmount: "1.65" },
+        { name: "铁岭", value: "10.18", stationCount: 118, percent: 34, enabledCount: 108, inboundAmount: "1.48", outboundAmount: "1.25" },
+        { name: "朝阳", value: "11.55", stationCount: 145, percent: 38, enabledCount: 132, inboundAmount: "1.72", outboundAmount: "1.45" },
+        { name: "葫芦岛", value: "9.25", stationCount: 102, percent: 30, enabledCount: 92, inboundAmount: "1.32", outboundAmount: "1.12" },
         { name: "信通公司", value: "5.24", stationCount: 42, percent: 18 },
         { name: "物资分公司", value: "8.12", stationCount: 65, percent: 28 },
         { name: "建设分公司", value: "6.45", stationCount: 52, percent: 22 },

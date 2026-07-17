@@ -56,9 +56,12 @@ export function LiaoningMap({ title, data, className = "" }: LiaoningMapProps) {
   const mapData = data
     .filter(item => !["信通公司", "物资分公司", "建设分公司", "送变电公司"].includes(item.name)) // 排除非地市单位
     .map((item) => ({
-      name: item.name + (item.name.endsWith("市") ? "" : "市"), // 确保名称匹配 GeoJSON 中的名称 (通常带“市”)
+      name: item.name + (item.name.endsWith("市") ? "" : "市"), // 确保名称匹配 GeoJSON 中的名称 (通常带"市")
       value: item.stationCount,
       amount: item.value,
+      enabledCount: item.enabledCount ?? item.stationCount,
+      inboundAmount: item.inboundAmount ?? "—",
+      outboundAmount: item.outboundAmount ?? "—",
     }));
 
   const option: echarts.EChartsOption = {
@@ -71,15 +74,23 @@ export function LiaoningMap({ title, data, className = "" }: LiaoningMapProps) {
       formatter: (params: any) => {
         if (!params.data) return params.name;
         return `
-          <div class="flex flex-col gap-1 p-1">
+          <div class="flex flex-col gap-1 p-1 min-w-[200px]">
             <div class="font-bold border-b border-white/10 pb-1 mb-1 text-[#00dbe7]">${params.name}</div>
             <div class="flex items-center justify-between gap-4">
-              <span class="text-[10px] opacity-70">材料站数量</span>
-              <span class="font-bold text-[#00dbe7]">${params.data.value} 个</span>
+              <span class="text-[10px] opacity-70">材料站启用数量</span>
+              <span class="font-bold text-[#00dbe7]">${params.data.enabledCount} 个</span>
             </div>
             <div class="flex items-center justify-between gap-4">
-              <span class="text-[10px] opacity-70">库存总金额</span>
+              <span class="text-[10px] opacity-70">库存金额</span>
               <span class="font-bold text-[#ffb950]">${params.data.amount} 亿元</span>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-[10px] opacity-70">累计入库金额</span>
+              <span class="font-bold text-[#7ed957]">${params.data.inboundAmount} 亿元</span>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-[10px] opacity-70">累计出库金额</span>
+              <span class="font-bold text-[#ff8a65]">${params.data.outboundAmount} 亿元</span>
             </div>
           </div>
         `;
