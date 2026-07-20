@@ -5,6 +5,8 @@ import { Info, ArrowUpRight } from "lucide-react";
 import { EChartsBase } from "./EChartsBase";
 import { GlassCard } from "./GlassCard";
 import type { CityInventoryItem } from "../data/mockData";
+// 静态导入 GeoJSON，避免运行时 fetch 被沙箱/代理拦截
+import liaoningGeoJson from "../data/geo/liaoning.geo.json";
 
 export interface LiaoningMapProps {
   title: string;
@@ -17,21 +19,12 @@ export function LiaoningMap({ title, data, className = "" }: LiaoningMapProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 改为从本地静态目录加载 GeoJSON，避免跨域或 403 错误
-    const LIAONING_GEOJSON_URL = "/liaoning_geo.json";
-
-    fetch(LIAONING_GEOJSON_URL)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        return res.json();
-      })
-      .then((geoJson) => {
-        echarts.registerMap("liaoning", geoJson);
-        setMapRegistered(true);
-      })
-      .catch((err) => {
-        console.error("Failed to load Liaoning GeoJSON:", err);
-      });
+    try {
+      echarts.registerMap("liaoning", liaoningGeoJson as any);
+      setMapRegistered(true);
+    } catch (err) {
+      console.error("Failed to register Liaoning GeoJSON:", err);
+    }
   }, []);
 
   const handleMapClick = (params: any) => {
